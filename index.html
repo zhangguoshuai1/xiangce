@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script  src='jquery.js'></script>
+	<style>
+	*{
+		padding:0;
+		margin:0;
+		list-style: none;
+	}
+	body{
+		background: #000000;
+	}
+	.box{
+		width: 700px;
+		height: 155px;
+		margin:100px auto;
+	}
+	.boximg{
+		width: 200px;
+		height: 200px;
+		float: left;
+		margin-left: 20px;
+	}
+	.boximg img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	.bbox{
+		max-width:100%;
+		max-height: 100%;
+		background:rgba(0,0,0,0.8);
+		position: fixed;
+		top:0;
+		left:0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		display: none;
+	}
+	.bboximg{
+		position: absolute;
+		top:0;
+		left:0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		width: 600px;
+		height: 400px;
+	}
+	.bbox img{
+		max-width:100%;
+		max-height: 100%;
+
+	}
+	.left{
+		position: absolute;
+		left:50px;
+		top:300px;
+		cursor: pointer;
+		width: 40px;
+		height: 67px;
+		background: url("img/4.png");
+	}
+	.left:active{
+		background: url("img/6.png");
+	}
+	.right{
+		position: absolute;
+		right: 50px;
+		top:300px;
+		cursor: pointer;
+		width: 40px;
+		height: 67px;
+		background: url("img/3.png");
+	}
+	.right:active{
+		background: url("img/5.png");
+	}
+	.guan{
+		position: absolute;
+		right:20px;
+		top:30px;
+		color: #fff;
+		cursor: pointer;
+		width: 55px;
+		height: 55px;
+		background: url("img/1.png");
+	}
+	.guan:active{
+		background: url("img/1.png") 55px 0;
+	}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="boximg"><img src="img/1.jpg" alt=""></div>
+		<div class="boximg"><img src="img/2.jpg" alt=""></div>
+		<div class="boximg"><img src="img/3.jpg" alt=""></div>
+		<div class="boximg"><img src="img/4.jpg" alt=""></div>
+		<div class="boximg"><img src="img/5.jpg" alt=""></div>
+		<div class="boximg"><img src="img/6.jpg" alt=""></div>
+		<div class="boximg"><img src="img/7.jpg" alt=""></div>
+		<div class="boximg"><img src="img/8.jpg" alt=""></div>
+		<div class="boximg"><img src="img/9.png" alt=""></div>
+	</div>
+	<div class="bbox">
+		<div class="guan"></div>
+		<ul>
+			<li class="left"></li>
+			<li class="right"></li>
+		</ul>
+		<div class="bboximg"><img src="" alt=""></div>
+	</div>
+	<script>
+	var box=$('.box img')
+	var bbox=$('.bbox img')
+	var left=$('.left')
+	var right=$('.right')
+	var guan=$('.guan')
+	var bboximg=$(".bboximg")
+//	var ch=document.documentElement.clientHeight;
+//	var cw=document.documentElement.clientWidth;
+//	$('.bbox')[0].style.height=ch+'px';
+//	$('.bbox')[0].style.width=cw+'px';
+//	console.log(document.documentElement.clientHeight)
+//	console.log(document.documentElement.clientWidth)
+	var ind=0;
+	$('.box .boximg').on('click',function(){
+		ind=$(this).index();
+		$('.bbox').fadeToggle("slow")
+//		$('.bbox')[0].style.display='block';
+		bbox.attr('src',box.eq(ind).attr('src'))
+	})
+	left.on("mousedown",false)
+	right.on("mousedown",false)
+
+	right.on('click',function(){
+
+			ind++;
+			if(ind==box.length){ind=0}
+
+			bbox.attr('src',box.eq(ind).attr('src'))
+
+		return false
+	})
+	left.on('click',function(){
+		ind--;
+		if(ind<0){ind=box.length-1}
+		bbox.attr('src',box.eq(ind).attr('src'))
+		return false
+	})
+	guan.on('click',function(){
+//		$('.bbox')[0].style.display='none';
+		$('.bbox').slideToggle("slow")
+	})
+	</script>
+</body>
+</html>
